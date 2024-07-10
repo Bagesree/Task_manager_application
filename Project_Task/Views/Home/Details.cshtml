@@ -1,0 +1,36 @@
+﻿@model Project_Task.Table
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 style="text-align: center; margin-bottom: 30px;"> Task Details</h2>
+
+<div style="display: flex; justify-content: center; align-items: center;">
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<p style=" display: flex; justify-content: center; align-items: center;">
+    <button type="button" class="btn btn-primary" onclick="window.location.href='@Url.Action("Edit", new { id =  Model.ID })'">Edit</button> |
+    <button type="button" class="btn btn-primary" onclick="window.location.href='@Url.Action("Index")'">Back to List</button> 
+
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")*@
+</p>

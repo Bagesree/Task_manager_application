@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Project_Task.Table>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="text-align:center;margin-bottom:30px;">Task List</h2>
+
+<p>
+    @Html.ActionLink("Add New Task", "Create")
+</p>
+<form method="get" action="@Url.Action("Index")" style="margin-bottom:20px;">
+    <input type="text" name="searchString" placeholder="Search tasks..." value="@Request.QueryString["searchString"]" />
+    <button type="submit" class="btn btn-primary btn-sm">Search</button>
+</form>
+<table class="table" style="text-align:center;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='@Url.Action("Edit", new { id = item.ID })'">Edit</button> |
+            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='@Url.Action("Details", new { id = item.ID })'">Details</button> |
+            <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='@Url.Action("Delete", new { id = item.ID })'">Delete</button> 
+        </td>
+    </tr>
+}
+
+</table>
